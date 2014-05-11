@@ -1,0 +1,4 @@
+_userslist:
+    resource: "@SiteMobileBundle/Controller/Modules/Users/ListController.php"
+    type:     annotation
+    prefix:   /userslist
