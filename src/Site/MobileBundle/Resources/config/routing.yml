@@ -1,4 +1,9 @@
-_userslist:
+_usersList:
     resource: "@SiteMobileBundle/Controller/Modules/Users/ListController.php"
     type:     annotation
-    prefix:   /userslist
+    prefix:   /usersList
+
+_userData:
+    resource: "@SiteMobileBundle/Controller/Modules/Users/DataController.php"
+    type:     annotation
+    prefix:   /userData
