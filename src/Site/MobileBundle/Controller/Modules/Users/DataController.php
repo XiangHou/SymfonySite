@@ -26,4 +26,41 @@ class DataController extends Controller
 
         return new Response('Created user id '.$user->getId());
     }
+
+    /**
+     * @Route("/getRecord")
+     */
+    public function getRecordAction () {
+        $id = '5371090830d8660896d63af1';
+        $user = $this->get('doctrine_mongodb')
+            ->getRepository('SiteStoreBundle:Users')
+            ->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('No product found for id '.$id);
+        }
+        else {
+            return new Response($user->getName());
+        }
+    }
+
+    /**
+     * @Route("/getRecordByName")
+     */
+    public function getRecordByNameAction () {
+        $name = 'Core';
+        $repository = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->getRepository('SiteStoreBundle:Users');
+        $users = $repository->findBy(
+            array('name' => $name),
+            array('age', 'ASC')
+        );
+        if (!$users) {
+            throw $this->createNotFoundException('No User found for name '.$name);
+        }
+        else {
+            return new Response('get user with name :'.' '.$users[0]->getName());
+        }
+    }
 }
